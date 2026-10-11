@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "ChatGPT ThreadMap",
+  "version": "2.0.0",
+  "description": "为 ChatGPT 长对话生成可搜索、可实时同步的提问地图，并精确定位消息。",
+  "icons": {
+    "16": "assets/icon-16.png",
+    "32": "assets/icon-32.png",
+    "48": "assets/icon-48.png",
+    "128": "assets/icon-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*"
+      ],
+      "js": [
+        "src/content/navigator.js"
+      ],
+      "css": [
+        "src/content/navigator.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

@@ -1,58 +1,78 @@
 # ChatGPT ThreadMap
 
-> Turn long ChatGPT conversations into a searchable map.
+[English](README_EN.md) | 简体中文
 
-![ChatGPT ThreadMap demo](assets/demo.gif)
+> 将冗长的 ChatGPT 对话变成可搜索、可定位的会话地图。
 
-ChatGPT ThreadMap is a lightweight browser extension for navigating long conversations on `chatgpt.com`. It indexes your prompts in real time, shows where you are, and jumps directly to the selected message—without sending or storing conversation data.
+![ChatGPT ThreadMap 使用演示](assets/demo.gif)
 
-**中文简介：** 将 ChatGPT 长对话变成可搜索的提问地图，实时同步当前位置，并快速定位到任意一条用户消息。
+ChatGPT ThreadMap 是一个用于浏览 `chatgpt.com` 长对话的轻量级浏览器扩展。它会实时整理当前会话中的用户提问、同步阅读位置，并将你准确带到所选消息。所有处理都在当前页面本地完成。
 
-## Features
+## 功能
 
-- **Live conversation map** — new prompts appear automatically.
-- **Accurate navigation** — targets the visible user-message bubble instead of an unstable wrapper.
-- **Current-position tracking** — the active entry follows your reading position.
-- **Instant filtering** — find a prompt by typing part of its text.
-- **Unobtrusive interface** — a compact floating button keeps ChatGPT's sidebars untouched.
-- **Keyboard access** — press `Alt + J` to open or close the map.
-- **Lightweight and private** — no backend, analytics, storage permission, or network permission.
+- **实时会话地图**：发送新提问后自动更新，无需手动刷新目录。
+- **准确定位**：直接定位可见的用户消息气泡，避免跳到相邻消息。
+- **当前位置同步**：滚动对话时，目录自动标记当前阅读位置。
+- **快速筛选**：输入提问中的任意文字即可过滤目录。
+- **低干扰界面**：入口位于右下角，不占用 ChatGPT 的左右侧栏。
+- **键盘快捷键**：按 `Alt + J` 打开或关闭会话地图。
+- **隐私友好**：没有后端、分析服务、存储权限或网络权限。
 
-## Install
+## 安装
 
-### Chrome / Edge (unpacked)
+### 推荐：安装 Release 精简包
 
-1. Download this repository and unzip it.
-2. Open `chrome://extensions` or `edge://extensions`.
-3. Enable **Developer mode**.
-4. Select **Load unpacked** and choose the repository folder.
-5. Refresh any open `chatgpt.com` tab.
+1. 前往 [Releases](https://github.com/Relax-boy/chatgpt-threadmap/releases) 下载最新的 `ChatGPT-ThreadMap-*.zip`。
+2. 解压下载的文件。
+3. 在 Chrome 打开 `chrome://extensions`，或在 Edge 打开 `edge://extensions`。
+4. 开启“开发者模式”。
+5. 点击“加载已解压的扩展程序”，选择刚才解压的文件夹。
+6. 刷新已经打开的 `chatgpt.com` 页面。
 
-When updating from another conversation-navigation extension, disable the old extension first to avoid duplicate controls.
+如果此前安装过其他聊天目录扩展，请先将其停用，避免页面出现重复入口。
 
-## Usage
+## 使用方法
 
-1. Open a conversation on `chatgpt.com`.
-2. Select the ThreadMap button near the lower-right corner.
-3. Search or select any prompt to jump to it.
-4. Continue scrolling—the active entry updates with your position.
+1. 在 `chatgpt.com` 打开一段对话。
+2. 点击页面右下角的 ThreadMap 按钮。
+3. 在列表中选择提问，或先输入关键词筛选。
+4. 页面将跳转到对应的用户消息；继续滚动时，当前条目会自动同步。
 
-## Project structure
+## 精简安装包内容
+
+Release 中的 ZIP 只包含浏览器运行扩展所必需的文件：
+
+```text
+manifest.json
+assets/
+├── icon-16.png
+├── icon-32.png
+├── icon-48.png
+└── icon-128.png
+src/content/
+├── navigator.js
+└── navigator.css
+```
+
+README、演示 GIF、测试和生成脚本只保留在源码仓库中，不会进入扩展安装包。
+
+## 源码结构
 
 ```text
 chatgpt-threadmap/
-├── assets/                 icons and demo
-├── scripts/                reproducible demo generator
-├── src/content/
-│   ├── navigator.js        indexing, tracking and navigation
-│   └── navigator.css       extension interface
-├── tests/                  browser fixture and smoke test
-└── manifest.json           Manifest V3 configuration
+├── assets/                 图标与 README 演示 GIF
+├── scripts/                演示素材生成脚本
+├── src/content/            扩展运行代码
+├── tests/                  浏览器夹具与冒烟测试
+├── manifest.json           Manifest V3 配置
+├── README.md               中文说明
+└── README_EN.md            English documentation
 ```
 
-## Development
+## 开发与测试
 
-The extension has no runtime dependencies. The optional development dependencies are only used for browser checks and regenerating the demo.
+扩展运行时没有第三方依赖。`package.json` 中的开发依赖仅用于浏览器测试和重新生成演示 GIF。
+开发调试时，也可以直接在扩展管理页选择本仓库根目录进行“加载已解压的扩展程序”。
 
 ```bash
 npm install
@@ -60,20 +80,20 @@ npm test
 npm run demo
 ```
 
-Set `PLAYWRIGHT_CHROME_EXECUTABLE` if Playwright should use an existing Chrome installation.
+如需让 Playwright 使用本机 Chrome，可设置 `PLAYWRIGHT_CHROME_EXECUTABLE`。
 
-## Privacy
+## 隐私
 
-ThreadMap reads message elements only inside the current ChatGPT page to build the local map. It does not transmit, persist, or analyze your conversations outside that tab. The manifest requests no optional permissions.
+ThreadMap 只读取当前 ChatGPT 标签页内的消息元素，用于生成本地会话地图。它不会上传、持久化或在页面之外分析你的聊天内容。扩展清单不申请可选权限。
 
-## Compatibility
+## 兼容性
 
 - Manifest V3
-- Google Chrome and Microsoft Edge
+- Google Chrome、Microsoft Edge
 - `https://chatgpt.com/*`
 
-ChatGPT's page structure changes over time. If indexing or navigation stops working, please open an issue with the browser version and a sanitized DOM sample—never include private conversation text.
+ChatGPT 的页面结构可能随时调整。如果目录或定位失效，请提交 Issue，并附上浏览器版本和经过脱敏的页面结构；请勿上传私人对话内容。
 
-## License
+## 许可证
 
 [MIT](LICENSE)

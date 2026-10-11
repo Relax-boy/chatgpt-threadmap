@@ -1,6 +1,6 @@
 {
   "name": "chatgpt-threadmap",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "private": true,
   "description": "A searchable conversation map for long ChatGPT threads.",
   "scripts": {

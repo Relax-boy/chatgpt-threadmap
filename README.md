@@ -54,33 +54,19 @@ src/content/
 └── navigator.css
 ```
 
-README、演示 GIF、测试和生成脚本只保留在源码仓库中，不会进入扩展安装包。
+双语说明、演示 GIF 和许可证只保留在源码仓库中，不会进入扩展安装包。
 
 ## 源码结构
 
 ```text
 chatgpt-threadmap/
-├── assets/                 图标与 README 演示 GIF
-├── scripts/                演示素材生成脚本
+├── assets/                 扩展图标与演示 GIF
 ├── src/content/            扩展运行代码
-├── tests/                  浏览器夹具与冒烟测试
 ├── manifest.json           Manifest V3 配置
 ├── README.md               中文说明
-└── README_EN.md            English documentation
+├── README_EN.md            English documentation
+└── LICENSE                 MIT 许可证
 ```
-
-## 开发与测试
-
-扩展运行时没有第三方依赖。`package.json` 中的开发依赖仅用于浏览器测试和重新生成演示 GIF。
-开发调试时，也可以直接在扩展管理页选择本仓库根目录进行“加载已解压的扩展程序”。
-
-```bash
-npm install
-npm test
-npm run demo
-```
-
-如需让 Playwright 使用本机 Chrome，可设置 `PLAYWRIGHT_CHROME_EXECUTABLE`。
 
 ## 隐私
 

@@ -54,33 +54,19 @@ src/content/
 └── navigator.css
 ```
 
-The README files, demo GIF, tests, and generation scripts stay in the source repository and are excluded from the installation package.
+The bilingual documentation, demo GIF, and license stay in the source repository and are excluded from the installation package.
 
 ## Source repository structure
 
 ```text
 chatgpt-threadmap/
-├── assets/                 icons and README demo GIF
-├── scripts/                reproducible demo generator
+├── assets/                 extension icons and demo GIF
 ├── src/content/            extension runtime code
-├── tests/                  browser fixture and smoke test
 ├── manifest.json           Manifest V3 configuration
 ├── README.md               Chinese documentation
-└── README_EN.md            English documentation
+├── README_EN.md            English documentation
+└── LICENSE                 MIT license
 ```
-
-## Development and testing
-
-The extension has no runtime dependencies. The development dependencies in `package.json` are used only for browser checks and regenerating the demo GIF.
-For development, you can also select the repository root directly with **Load unpacked** on the browser's extensions page.
-
-```bash
-npm install
-npm test
-npm run demo
-```
-
-Set `PLAYWRIGHT_CHROME_EXECUTABLE` if Playwright should use an existing Chrome installation.
 
 ## Privacy
 
